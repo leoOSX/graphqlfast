@@ -1,0 +1,53 @@
+"Para el formato de Fecha"
+scalar Date
+"Estado"
+enum Estado{
+    ACTIVO INACTIVO ELIMINADO
+}
+"Genero"
+enum Genero{
+    MASCULINO FEMENINO
+}
+
+"Modelo de Usuario"
+type User {
+    _id: ID!
+    nombre_completo: String!
+    fecha_nacimiento: Date!
+    telefono:String!
+    peso:Int!
+    altura:Int!
+    genero:Genero!
+    foto: String
+    miniatura:String
+    estado:Estado!
+    email: String!  
+    password:String!
+    coach:Coach
+    
+}
+input UserInput {
+    nombre_completo: String
+    fecha_nacimiento: Date
+    codigo_pais:String
+    telefono:String
+    peso:Int
+    altura:Int
+    genero:Genero
+    foto: String
+    miniatura:String
+    estado:Estado
+    email: String  
+    password: String
+    token:String
+}
+type Query {
+    "Obtenemos las lista de todos los usuarios"
+    users: [User!]!
+}
+type Mutation{
+    updateUser(_id:ID!,input:UserInput):User
+    deleteUser(_id:ID!):String
+    "Registro de Usuarios"
+    registerUser(user: UserInput!): ResultUser!
+}
