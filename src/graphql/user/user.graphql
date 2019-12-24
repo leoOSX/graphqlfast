@@ -26,6 +26,7 @@ type User {
     coach:Coach
     
 }
+"Modelo de Input para el Usuario"
 input UserInput {
     nombre_completo: String
     fecha_nacimiento: Date
@@ -41,12 +42,16 @@ input UserInput {
     password: String
     token:String
 }
+
 type Query {
     "Obtenemos las lista de todos los usuarios"
     users: [User!]!
 }
+
 type Mutation{
+    "Actualizar Usuario"
     updateUser(_id:ID!,input:UserInput):User
+    "Eliminar Usuario"
     deleteUser(_id:ID!):String
     "Registro de Usuarios"
     registerUser(user: UserInput!): ResultUser!
